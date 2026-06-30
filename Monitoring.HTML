@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Real Time Monitoring - AI AWS Optimizer</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+color:white;
+overflow-x:hidden;
+min-height:100vh;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(10px);
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#00d4ff;
+}
+
+.back-btn{
+text-decoration:none;
+color:white;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+padding:10px 22px;
+border-radius:30px;
+font-weight:bold;
+margin-right:10px;
+display:inline-block;
+transition:.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px #00d4ff;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:60px;
+font-weight:900;
+color:#00d4ff;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:850px;
+margin:auto;
+font-size:20px;
+line-height:1.8;
+color:#dbeafe;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.stat-box{
+width:200px;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+box-shadow:0 0 25px rgba(0,212,255,.2);
+transition:.4s;
+text-align:center;
+}
+
+.stat-box:hover{
+transform:translateY(-10px);
+box-shadow:0 0 35px #00d4ff;
+}
+
+.stat-box h2{
+font-size:42px;
+color:#00ff99;
+margin-bottom:10px;
+}
+
+.container{
+width:85%;
+max-width:1200px;
+margin:auto;
+padding-bottom:80px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-bottom:40px;
+}
+
+.card{
+background:rgba(255,255,255,.07);
+backdrop-filter:blur(12px);
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.1);
+transition:.4s;
+box-shadow:0 0 20px rgba(0,212,255,.15);
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 35px #00d4ff;
+}
+
+.card h3{
+color:#00d4ff;
+margin-bottom:15px;
+}
+
+.card p{
+color:#d1d5db;
+line-height:1.7;
+}
+
+.section{
+background:rgba(255,255,255,.07);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(12px);
+margin-top:30px;
+}
+
+.section h2{
+color:#00d4ff;
+margin-bottom:20px;
+}
+
+.section ul{
+padding-left:20px;
+}
+
+.section li{
+margin-bottom:12px;
+line-height:1.7;
+}
+
+.graph{
+height:300px;
+display:flex;
+justify-content:center;
+align-items:flex-end;
+gap:20px;
+margin-top:30px;
+}
+
+.bar{
+width:70px;
+background:linear-gradient(to top,#00d4ff,#00ff99);
+border-radius:15px 15px 0 0;
+animation:grow 2s infinite alternate;
+}
+
+.b1{height:180px;}
+.b2{height:260px;}
+.b3{height:140px;}
+.b4{height:220px;}
+.b5{height:290px;}
+
+@keyframes grow{
+from{transform:scaleY(.7);}
+to{transform:scaleY(1);}
+}
+
+.ai-box{
+margin-top:30px;
+background:rgba(0,212,255,.08);
+border:1px solid rgba(0,212,255,.3);
+padding:25px;
+border-radius:20px;
+}
+
+.ai-box h3{
+color:#00ff99;
+margin-bottom:10px;
+}
+
+footer{
+background:#06101f;
+padding:25px;
+text-align:center;
+margin-top:50px;
+}
+
+.ai-bot{
+position:fixed;
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+border-radius:50%;
+background:#00d4ff;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+cursor:pointer;
+box-shadow:0 0 30px #00d4ff;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 10px #00d4ff;}
+50%{box-shadow:0 0 40px #00d4ff;}
+100%{box-shadow:0 0 10px #00d4ff;}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">AI AWS Optimizer</div>
+
+<div>
+<a href="AWS.html" class="back-btn">Back</a>
+</div>
+</header>
+
+<section class="hero">
+
+<h1>📊 Real Time Monitoring</h1>
+
+<p>
+Tracks infrastructure operations instantaneously across all instances to prevent financial system leakages and ensure optimal performance.
+</p>
+
+<div class="stats">
+
+<div class="stat-box">
+<h2>45%</h2>
+<p>Avg CPU Load</p>
+</div>
+
+<div class="stat-box">
+<h2>Live</h2>
+<p>Status Sync</p>
+</div>
+
+<div class="stat-box">
+<h2>0</h2>
+<p>Critical Spikes</p>
+</div>
+
+<div class="stat-box">
+<h2>3ms</h2>
+<p>Latency</p>
+</div>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card">
+<h3>⚡ CPU Tracking</h3>
+<p>
+Instantly measures central workflow units to track processing saturation and idle run states.
+</p>
+</div>
+
+<div class="card">
+<h3>🧠 Memory Footprint</h3>
+<p>
+Maintains dynamic live reporting of database allocation maps and application space waste.
+</p>
+</div>
+
+<div class="card">
+<h3>🌐 Traffic Analysis</h3>
+<p>
+Visualizes system requests, identifying data transfer bottlenecks and sudden usage spikes.
+</p>
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>📈 Live Resource Performance Stream</h2>
+
+<div class="graph">
+<div class="bar b1"></div>
+<div class="bar b2"></div>
+<div class="bar b3"></div>
+<div class="bar b4"></div>
+<div class="bar b5"></div>
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>🎯 Key Responsibilities & Scope</h2>
+
+<ul>
+<li>Tracks active CPU, memory, and disk utilization instantly.</li>
+<li>Live metrics tracking across multi-region cloud infrastructures.</li>
+<li>Visualizes sudden traffic spikes and uneven resource allocation.</li>
+<li>Ensures system stability while pinpointing cost leakages.</li>
+</ul>
+
+</div>
+
+<div class="ai-box">
+
+<h3>🤖 AI Insights</h3>
+
+<p>
+Recommendation: Network requests are currently peaking in us-east-1. Data transfer costs are optimized, but monitor secondary replicas for minor memory spikes.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+AI AWS Cost Optimizer © 2026
+</footer>
+
+
+
+</script>
+
+</body>
+</html>

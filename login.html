@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AWS AI Cost Optimizer Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+position:relative;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.grid-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+linear-gradient(rgba(0,212,255,.08) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,212,255,.08) 1px,transparent 1px);
+background-size:40px 40px;
+animation:gridMove 10s linear infinite;
+}
+
+@keyframes gridMove{
+0%{transform:translateY(0);}
+100%{transform:translateY(40px);}
+}
+
+.particles span{
+position:absolute;
+width:8px;
+height:8px;
+background:#00d4ff;
+border-radius:50%;
+box-shadow:0 0 20px #00d4ff;
+animation:float 15s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+
+.login-container{
+width:430px;
+padding:40px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.1);
+border-radius:25px;
+box-shadow:0 0 50px rgba(0,212,255,.25);
+text-align:center;
+position:relative;
+z-index:10;
+}
+
+.ai-core{
+position:relative;
+width:140px;
+height:140px;
+margin:auto;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.core{
+width:70px;
+height:70px;
+border-radius:50%;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+font-weight:800;
+color:white;
+box-shadow:0 0 40px #00d4ff;
+animation:pulseCore 2s infinite;
+z-index:5;
+}
+
+.ring{
+position:absolute;
+border-radius:50%;
+border:2px solid #00d4ff;
+}
+
+.ring1{
+width:90px;
+height:90px;
+animation:spin1 8s linear infinite;
+}
+
+.ring2{
+width:120px;
+height:120px;
+border-color:#00ff99;
+animation:spin2 10s linear infinite reverse;
+}
+
+.ring3{
+width:140px;
+height:140px;
+border-color:rgba(0,212,255,.4);
+animation:spin1 15s linear infinite;
+}
+
+@keyframes spin1{
+100%{transform:rotate(360deg);}
+}
+
+@keyframes spin2{
+100%{transform:rotate(-360deg);}
+}
+
+@keyframes pulseCore{
+50%{
+transform:scale(1.15);
+box-shadow:0 0 60px #00ff99;
+}
+}
+
+h1{
+color:#00d4ff;
+margin-top:15px;
+font-size:30px;
+}
+
+.subtitle{
+color:#ccc;
+margin-top:10px;
+font-size:14px;
+}
+
+.typing{
+margin:20px auto;
+color:#00ff99;
+font-size:14px;
+white-space:nowrap;
+overflow:hidden;
+border-right:2px solid #00ff99;
+width:0;
+animation:
+typing 4s steps(30,end) infinite,
+blink .6s infinite;
+}
+
+@keyframes typing{
+0%{width:0;}
+50%{width:100%;}
+100%{width:0;}
+}
+
+@keyframes blink{
+50%{border-color:transparent;}
+}
+
+.ai-scan{
+height:3px;
+width:100%;
+margin-bottom:25px;
+background:linear-gradient(
+90deg,
+transparent,
+#00d4ff,
+transparent
+);
+animation:scan 2s linear infinite;
+}
+
+@keyframes scan{
+0%{transform:translateX(-100%);}
+100%{transform:translateX(100%);}
+}
+
+.input-box{
+margin-bottom:18px;
+}
+
+.input-box input{
+width:100%;
+padding:16px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.15);
+background:rgba(255,255,255,.05);
+color:white;
+outline:none;
+transition:.4s;
+}
+
+.input-box input:focus{
+border-color:#00d4ff;
+box-shadow:0 0 20px #00d4ff;
+transform:scale(1.02);
+}
+
+.input-box input::placeholder{
+color:#bbb;
+}
+
+.login-btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:14px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+font-size:16px;
+font-weight:700;
+color:white;
+cursor:pointer;
+transition:.4s;
+}
+
+.login-btn:hover{
+transform:translateY(-4px);
+box-shadow:0 0 30px #00d4ff;
+}
+
+.register-btn{
+width:100%;
+padding:15px;
+margin-top:12px;
+border:none;
+border-radius:14px;
+background:linear-gradient(45deg,#ff9800,#ff5722);
+font-size:16px;
+font-weight:700;
+color:white;
+cursor:pointer;
+transition:.4s;
+}
+
+.register-btn:hover{
+transform:translateY(-4px);
+box-shadow:0 0 30px #ff9800;
+}
+
+.links{
+display:flex;
+justify-content:space-between;
+margin-top:20px;
+}
+
+.links a{
+text-decoration:none;
+color:#00d4ff;
+font-size:14px;
+}
+
+.aws-tag{
+margin-top:20px;
+color:#999;
+font-size:13px;
+}
+
+.assistant{
+position:fixed;
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+border-radius:50%;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:32px;
+box-shadow:0 0 40px #00d4ff;
+animation:floatBot 3s ease-in-out infinite;
+cursor:pointer;
+z-index:100;
+}
+
+@keyframes floatBot{
+50%{
+transform:translateY(-15px);
+}
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<div class="particles">
+<span style="left:10%;animation-duration:10s;"></span>
+<span style="left:20%;animation-duration:15s;"></span>
+<span style="left:35%;animation-duration:12s;"></span>
+<span style="left:50%;animation-duration:18s;"></span>
+<span style="left:65%;animation-duration:14s;"></span>
+<span style="left:80%;animation-duration:20s;"></span>
+<span style="left:90%;animation-duration:16s;"></span>
+</div>
+
+<div class="login-container">
+
+<div class="ai-core">
+<div class="ring ring1"></div>
+<div class="ring ring2"></div>
+<div class="ring ring3"></div>
+<div class="core">AI</div>
+</div>
+
+<h1>AWS AI Optimizer</h1>
+
+<p class="subtitle">
+Secure Login To AWS Cost Optimization Dashboard
+</p>
+
+<div class="typing">
+Analyzing AWS Infrastructure...
+</div>
+
+<div class="ai-scan"></div>
+
+<form onsubmit="login(event)">
+
+<div class="input-box">
+<input type="email" placeholder="AWS Email Address" required>
+</div>
+
+<div class="input-box">
+<input type="password" placeholder="Password" required>
+</div>
+
+<button class="login-btn">
+Login Dashboard
+</button>
+
+<button type="button" class="register-btn" onclick="registerUser()">
+Register Account
+</button>
+
+</form>
+
+
+<div class="aws-tag">
+Powered By AI • AWS Cloud Analytics • 2026
+</div>
+
+</div>
+
+<div class="assistant" onclick="assistantBot()">
+🤖
+</div>
+
+<script>
+
+function login(e){
+
+    e.preventDefault();
+
+    const email = document.querySelector('input[type="email"]').value;
+    const password = document.querySelector('input[type="password"]').value;
+
+    // Set your email and password here
+    const validEmail = "admin@progmail.com";
+    const validPassword = "12345";
+
+    if(email === validEmail && password === validPassword){
+
+        const btn = document.querySelector(".login-btn");
+
+        btn.innerHTML = "🤖 AI Verifying...";
+        btn.disabled = true;
+
+        setTimeout(() => {
+
+            btn.innerHTML = "✅ Access Granted";
+
+            setTimeout(() => {
+                window.location.href = "welcome.html";
+            }, 1000);
+
+        }, 2000);
+
+    }else{
+        alert("❌ Invalid Email or Password");
+    }
+
+}
+
+function registerUser(){
+    window.location.href = "welcome.html";
+}
+
+function assistantBot(){
+    alert("🤖 AI Assistant Online\n\nAWS Monitoring Active\nCost Analysis Running\nOptimization Ready");
+}
+
+</script>
+</body>
+</html>

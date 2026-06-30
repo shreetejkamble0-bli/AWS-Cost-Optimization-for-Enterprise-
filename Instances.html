@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI AWS Assistant</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 10s ease infinite;
+color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+width:100%;
+max-width:900px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+border-radius:25px;
+padding:30px;
+box-shadow:0 0 30px rgba(0,212,255,.3);
+}
+
+.header{
+text-align:center;
+margin-bottom:25px;
+}
+
+.header h1{
+font-size:40px;
+color:#00d4ff;
+}
+
+.header p{
+margin-top:10px;
+font-size:18px;
+}
+
+.chat-box{
+height:400px;
+overflow-y:auto;
+background:rgba(255,255,255,.05);
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+.message{
+padding:12px 15px;
+margin:10px 0;
+border-radius:12px;
+max-width:80%;
+}
+
+.bot{
+background:#00d4ff;
+color:white;
+}
+
+.user{
+background:#00ff99;
+color:black;
+margin-left:auto;
+}
+
+.input-area{
+display:flex;
+gap:10px;
+}
+
+input{
+flex:1;
+padding:15px;
+border:none;
+border-radius:12px;
+outline:none;
+font-size:16px;
+}
+
+button{
+padding:15px 25px;
+border:none;
+border-radius:12px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.back-btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 25px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+border-radius:30px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>🤖 AI AWS Assistant</h1>
+<p>Your Smart AWS Cost Optimization Guide</p>
+</div>
+
+<div class="chat-box" id="chatBox">
+
+<div class="message bot">
+Hello! I am your AI AWS Assistant. Ask me about AWS cost optimization.
+</div>
+
+</div>
+
+<div class="input-area">
+<input type="text" id="userInput" placeholder="Ask something...">
+<button onclick="sendMessage()">Send</button>
+</div>
+
+<a href="AWS.html" class="back-btn">⬅ Back To Home</a>
+
+</div>
+
+<script>
+
+function sendMessage(){
+
+let input=document.getElementById("userInput");
+let text=input.value.trim();
+
+if(text==="") return;
+
+let chat=document.getElementById("chatBox");
+
+chat.innerHTML+=`
+<div class="message user">${text}</div>
+`;
+
+let reply="I can help with AWS optimization.";
+
+if(text.toLowerCase().includes("ec2")){
+reply="💡 Stop idle EC2 instances and use Auto Scaling to reduce costs.";
+}
+else if(text.toLowerCase().includes("s3")){
+reply="💡 Move old files to S3 Glacier and remove unused storage.";
+}
+else if(text.toLowerCase().includes("rds")){
+reply="💡 Use Reserved Instances and monitor database usage.";
+}
+else if(text.toLowerCase().includes("lambda")){
+reply="💡 Optimize Lambda memory allocation and execution time.";
+}
+else if(text.toLowerCase().includes("cloudwatch")){
+reply="💡 Configure alerts and remove unnecessary log retention.";
+}
+else if(text.toLowerCase().includes("cost")){
+reply="💰 Analyze spending trends and apply AI recommendations.";
+}
+
+setTimeout(()=>{
+chat.innerHTML+=`
+<div class="message bot">${reply}</div>
+`;
+chat.scrollTop=chat.scrollHeight;
+},500);
+
+input.value="";
+}
+
+</script>
+
+</body>
+</html>
+

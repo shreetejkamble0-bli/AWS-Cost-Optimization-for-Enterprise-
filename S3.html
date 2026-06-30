@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon S3 - AI AWS Optimizer</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+color:white;
+overflow-x:hidden;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+header{
+position:sticky;
+top:0;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(10px);
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#00d4ff;
+}
+
+.back-btn{
+text-decoration:none;
+padding:12px 25px;
+border-radius:30px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:65px;
+font-weight:900;
+background:linear-gradient(90deg,#00d4ff,#00ff99,#00d4ff);
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:textGlow 6s linear infinite;
+}
+
+@keyframes textGlow{
+0%{background-position:0%;}
+100%{background-position:300%;}
+}
+
+.hero p{
+max-width:850px;
+margin:20px auto;
+font-size:20px;
+line-height:1.8;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.stat-card{
+width:220px;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+text-align:center;
+transition:.4s;
+box-shadow:0 0 20px rgba(0,212,255,.2);
+}
+
+.stat-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 35px #00d4ff;
+}
+
+.stat-card h2{
+font-size:40px;
+color:#00ff99;
+margin-bottom:10px;
+}
+
+.scan-btn{
+margin-top:35px;
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.container{
+width:90%;
+max-width:1300px;
+margin:auto;
+padding-bottom:60px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+transition:.4s;
+box-shadow:0 0 20px rgba(0,212,255,.15);
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 35px #00d4ff;
+}
+
+.card h3{
+color:#00d4ff;
+margin-bottom:12px;
+}
+
+.table-box{
+margin-top:40px;
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+th{
+color:#00ff99;
+}
+
+.ai-box{
+margin-top:40px;
+padding:25px;
+border-radius:20px;
+background:rgba(0,212,255,.08);
+border:1px solid rgba(0,212,255,.3);
+}
+
+.ai-box h2{
+color:#00ff99;
+margin-bottom:15px;
+}
+
+footer{
+background:#06101f;
+padding:25px;
+text-align:center;
+margin-top:50px;
+}
+
+.ai-bot{
+position:fixed;
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+border-radius:50%;
+background:#00d4ff;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+cursor:pointer;
+box-shadow:0 0 30px #00d4ff;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 10px #00d4ff;}
+50%{box-shadow:0 0 40px #00d4ff;}
+100%{box-shadow:0 0 10px #00d4ff;}
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">AI AWS Optimizer</div>
+<a href="AWS.html" class="back-btn">Back</a>
+</header>
+
+<section class="hero">
+
+<h1>🗄 Amazon S3 Storage Intelligence Center</h1>
+
+<p>
+Monitor Amazon S3 buckets, analyze storage usage,
+track data growth, detect unused files and receive
+AI-powered recommendations to reduce storage costs.
+</p>
+
+<div class="stats">
+
+<div class="stat-card">
+<h2>25</h2>
+<p>Total Buckets</p>
+</div>
+
+<div class="stat-card">
+<h2>4.8TB</h2>
+<p>Storage Used</p>
+</div>
+
+<div class="stat-card">
+<h2>$320</h2>
+<p>Monthly Cost</p>
+</div>
+
+<div class="stat-card">
+<h2>$95</h2>
+<p>Potential Savings</p>
+</div>
+
+</div>
+
+<button class="scan-btn" onclick="scanS3()">
+🚀 Scan Storage
+</button>
+
+</section>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+<h3>🗂 Bucket Monitoring</h3>
+<p>Track storage utilization across all S3 buckets.</p>
+</div>
+
+<div class="card">
+<h3>📦 Object Analytics</h3>
+<p>Analyze object count, size and access frequency.</p>
+</div>
+
+<div class="card">
+<h3>❄ Glacier Optimization</h3>
+<p>Move cold data to Glacier for lower costs.</p>
+</div>
+
+<div class="card">
+<h3>💰 Cost Reduction</h3>
+<p>AI-powered storage cost optimization insights.</p>
+</div>
+
+</div>
+
+<div class="table-box">
+
+<h2 style="color:#00d4ff;margin-bottom:20px;">
+S3 Bucket Status
+</h2>
+
+<table>
+
+<tr>
+<th>Bucket Name</th>
+<th>Storage</th>
+<th>Objects</th>
+<th>Monthly Cost</th>
+</tr>
+
+<tr>
+<td>project-backups</td>
+<td>1.5 TB</td>
+<td>120,000</td>
+<td>$95</td>
+</tr>
+
+<tr>
+<td>website-assets</td>
+<td>850 GB</td>
+<td>85,000</td>
+<td>$60</td>
+</tr>
+
+<tr>
+<td>logs-archive</td>
+<td>2.4 TB</td>
+<td>250,000</td>
+<td>$165</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="ai-box">
+
+<h2>🤖 AI Storage Insight</h2>
+
+<p>
+Detected 1.8 TB of infrequently accessed data.
+Moving these files to Amazon S3 Glacier could save
+approximately $95 per month.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+AI AWS Cost Optimizer © 2026
+</footer>
+
+
+
+</body>
+</html>

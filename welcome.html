@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI AWS Cost Optimizer</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:linear-gradient(-45deg,#050b18,#0b1730,#11264a,#091322);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+color:white;
+position:relative;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Floating Particles */
+
+.particle{
+position:absolute;
+width:4px;
+height:4px;
+background:#00d4ff;
+border-radius:50%;
+box-shadow:0 0 15px #00d4ff;
+animation:float 15s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+
+/* Main Card */
+
+.container{
+width:90%;
+max-width:950px;
+text-align:center;
+padding:60px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+border-radius:30px;
+box-shadow:0 0 40px rgba(0,212,255,.15);
+position:relative;
+z-index:2;
+}
+
+/* AI Orb */
+
+.ai-container{
+position:relative;
+width:180px;
+height:180px;
+margin:auto;
+margin-bottom:30px;
+}
+
+.ai-core{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:75px;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{
+transform:translate(-50%,-50%) scale(1);
+}
+50%{
+transform:translate(-50%,-50%) scale(1.15);
+}
+100%{
+transform:translate(-50%,-50%) scale(1);
+}
+}
+
+.ring{
+position:absolute;
+border:2px solid rgba(0,212,255,.5);
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+.ring1{
+width:150px;
+height:150px;
+animation:rotate 12s linear infinite;
+}
+
+.ring2{
+width:190px;
+height:190px;
+animation:rotateReverse 15s linear infinite;
+}
+
+.ring3{
+width:230px;
+height:230px;
+animation:rotate 18s linear infinite;
+}
+
+@keyframes rotate{
+from{transform:translate(-50%,-50%) rotate(0);}
+to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
+@keyframes rotateReverse{
+from{transform:translate(-50%,-50%) rotate(360deg);}
+to{transform:translate(-50%,-50%) rotate(0);}
+}
+
+.tag{
+display:inline-block;
+padding:12px 25px;
+border-radius:30px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.15);
+margin-bottom:25px;
+font-weight:600;
+color:#00d4ff;
+}
+
+h1{
+font-size:68px;
+font-weight:900;
+margin-bottom:20px;
+background:linear-gradient(90deg,#00d4ff,#00ff99,#ffffff,#00d4ff);
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:shine 8s linear infinite;
+}
+
+@keyframes shine{
+0%{background-position:0%;}
+100%{background-position:300%;}
+}
+
+.typing{
+font-size:24px;
+color:#00ff99;
+height:35px;
+margin-bottom:25px;
+overflow:hidden;
+white-space:nowrap;
+border-right:3px solid #00ff99;
+width:0;
+animation:typing 4s steps(30,end) infinite alternate;
+}
+
+@keyframes typing{
+from{width:0;}
+to{width:100%;}
+}
+
+p{
+font-size:21px;
+line-height:1.8;
+color:#dce7ff;
+max-width:800px;
+margin:auto;
+}
+
+.btn{
+display:inline-block;
+margin-top:40px;
+padding:18px 50px;
+border-radius:50px;
+text-decoration:none;
+font-size:20px;
+font-weight:700;
+color:white;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+box-shadow:0 0 25px rgba(0,212,255,.5);
+transition:.4s;
+}
+
+.btn:hover{
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 0 40px #00d4ff;
+}
+
+.stats{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.stat{
+padding:15px 25px;
+background:rgba(255,255,255,.05);
+border-radius:15px;
+}
+
+.stat h2{
+color:#00ff99;
+font-size:28px;
+}
+
+.stat p{
+font-size:14px;
+}
+
+@media(max-width:768px){
+
+h1{
+font-size:42px;
+}
+
+.typing{
+font-size:18px;
+}
+
+.container{
+padding:30px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- Floating Particles -->
+<div class="particle" style="left:10%;animation-duration:12s;"></div>
+<div class="particle" style="left:20%;animation-duration:18s;"></div>
+<div class="particle" style="left:35%;animation-duration:10s;"></div>
+<div class="particle" style="left:50%;animation-duration:15s;"></div>
+<div class="particle" style="left:65%;animation-duration:13s;"></div>
+<div class="particle" style="left:80%;animation-duration:20s;"></div>
+<div class="particle" style="left:90%;animation-duration:17s;"></div>
+
+<div class="container">
+
+
+
+<div class="ai-container">
+<div class="ring ring1"></div>
+<div class="ring ring2"></div>
+<div class="ring ring3"></div>
+<div class="ai-core">🤖</div>
+</div>
+
+<h1>AI AWS Cost Optimizer</h1>
+
+
+
+<p>
+Welcome to AI AWS Cost Optimizer
+</p>
+
+
+
+<a href="AWS.html" class="btn">
+next →
+</a>
+
+</div>
+
+</body>
+</html>

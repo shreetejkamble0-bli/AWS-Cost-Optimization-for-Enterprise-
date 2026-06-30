@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon RDS Intelligence Center</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+color:white;
+overflow-x:hidden;
+min-height:100vh;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(10px);
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#00d4ff;
+}
+
+.back-btn{
+text-decoration:none;
+padding:12px 25px;
+border-radius:30px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:70px;
+font-weight:900;
+background:linear-gradient(90deg,#00d4ff,#00ff99,#00d4ff);
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:textGlow 6s linear infinite;
+}
+
+@keyframes textGlow{
+0%{background-position:0%;}
+100%{background-position:300%;}
+}
+
+.hero p{
+max-width:850px;
+margin:20px auto;
+font-size:20px;
+line-height:1.8;
+color:#dbeafe;
+}
+
+.scan-btn{
+padding:15px 35px;
+margin-top:25px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:50px;
+flex-wrap:wrap;
+}
+
+.stat-card{
+width:220px;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+text-align:center;
+box-shadow:0 0 20px rgba(0,212,255,.2);
+}
+
+.stat-card h2{
+font-size:42px;
+color:#00ff99;
+margin-bottom:10px;
+}
+
+.container{
+width:90%;
+max-width:1300px;
+margin:auto;
+padding-bottom:60px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+}
+
+.card h3{
+color:#00d4ff;
+margin-bottom:12px;
+}
+
+.table-box{
+margin-top:40px;
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+th{
+color:#00ff99;
+}
+
+.ai-box{
+margin-top:40px;
+padding:25px;
+border-radius:20px;
+background:rgba(0,212,255,.08);
+border:1px solid rgba(0,212,255,.3);
+}
+
+.ai-box h2{
+color:#00ff99;
+margin-bottom:15px;
+}
+
+footer{
+background:#06101f;
+padding:25px;
+text-align:center;
+margin-top:50px;
+}
+
+.ai-bot{
+position:fixed;
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+border-radius:50%;
+background:#00d4ff;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+cursor:pointer;
+box-shadow:0 0 30px #00d4ff;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">AI AWS Optimizer</div>
+<a href="AWS.html" class="back-btn">Back</a>
+</header>
+
+<section class="hero">
+
+<h1>🗄 Amazon RDS Intelligence Center</h1>
+
+<p>
+Monitor database performance, analyze storage usage,
+track queries, optimize costs and receive AI-powered
+recommendations for Amazon RDS.
+</p>
+
+<button class="scan-btn" onclick="scanRDS()">
+🗄 Analyze Databases
+</button>
+
+<div class="stats">
+
+<div class="stat-card">
+<h2>12</h2>
+<p>Databases</p>
+</div>
+
+<div class="stat-card">
+<h2>2.5 TB</h2>
+<p>Storage Used</p>
+</div>
+
+<div class="stat-card">
+<h2>$620</h2>
+<p>Monthly Cost</p>
+</div>
+
+<div class="stat-card">
+<h2>$140</h2>
+<p>Potential Savings</p>
+</div>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+<h3>📊 Performance Monitoring</h3>
+<p>Monitor CPU, memory and database performance.</p>
+</div>
+
+<div class="card">
+<h3>💾 Storage Analytics</h3>
+<p>Track storage growth and utilization.</p>
+</div>
+
+<div class="card">
+<h3>⚡ Query Optimization</h3>
+<p>Identify slow queries and bottlenecks.</p>
+</div>
+
+<div class="card">
+<h3>🤖 AI Recommendations</h3>
+<p>Receive intelligent database optimization tips.</p>
+</div>
+
+</div>
+
+<div class="table-box">
+
+<h2 style="color:#00d4ff;margin-bottom:20px;">
+RDS Database Status
+</h2>
+
+<table>
+
+<tr>
+<th>Database</th>
+<th>Status</th>
+<th>CPU</th>
+<th>Monthly Cost</th>
+</tr>
+
+<tr>
+<td>CustomerDB</td>
+<td>Healthy</td>
+<td>62%</td>
+<td>$180</td>
+</tr>
+
+<tr>
+<td>SalesDB</td>
+<td>Healthy</td>
+<td>55%</td>
+<td>$140</td>
+</tr>
+
+<tr>
+<td>AnalyticsDB</td>
+<td>Warning</td>
+<td>88%</td>
+<td>$210</td>
+</tr>
+
+<tr>
+<td>BackupDB</td>
+<td>Healthy</td>
+<td>25%</td>
+<td>$90</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="ai-box">
+
+<h2>🤖 AI Database Insight</h2>
+
+<p>
+AnalyticsDB is experiencing high CPU utilization.
+Optimizing queries and enabling read replicas could
+improve performance and reduce costs by approximately $140 per month.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+AI AWS Cost Optimizer © 2026
+</footer>
+
+
+
+</body>
+</html>

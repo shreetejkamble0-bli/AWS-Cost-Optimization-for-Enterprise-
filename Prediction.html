@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Cost Prediction</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 10s ease infinite;
+color:white;
+min-height:100vh;
+padding:40px;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+padding:35px;
+border-radius:25px;
+box-shadow:0 0 25px rgba(0,212,255,.3);
+}
+
+h1{
+text-align:center;
+color:#00d4ff;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+margin-bottom:30px;
+font-size:18px;
+}
+
+.card{
+background:rgba(255,255,255,.06);
+padding:25px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+outline:none;
+margin-bottom:20px;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.result{
+margin-top:25px;
+padding:20px;
+border-radius:15px;
+background:rgba(0,255,153,.15);
+display:none;
+}
+
+.back{
+display:inline-block;
+margin-top:25px;
+padding:12px 25px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+border-radius:30px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+.graph{
+display:flex;
+justify-content:center;
+align-items:flex-end;
+gap:15px;
+height:250px;
+margin-top:25px;
+}
+
+.bar{
+width:60px;
+background:linear-gradient(to top,#00d4ff,#00ff99);
+border-radius:10px 10px 0 0;
+}
+
+.b1{height:80px;}
+.b2{height:120px;}
+.b3{height:160px;}
+.b4{height:210px;}
+.b5{height:250px;}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🤖 AI Cost Prediction</h1>
+
+<p class="subtitle">
+Predict future AWS spending using AI-powered analysis.
+</p>
+
+<div class="card">
+
+<label>Current Monthly AWS Cost ($)</label>
+<input type="number" id="cost" placeholder="Enter monthly cost">
+
+<button onclick="predictCost()">
+📈 Predict Cost
+</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<div class="card">
+
+<h2>Predicted Cost Trend</h2>
+
+<div class="graph">
+<div class="bar b1"></div>
+<div class="bar b2"></div>
+<div class="bar b3"></div>
+<div class="bar b4"></div>
+<div class="bar b5"></div>
+</div>
+
+</div>
+
+<a href="AWS.html" class="back">⬅ Back to Home</a>
+
+</div>
+
+<script>
+
+function predictCost(){
+
+let cost = parseFloat(document.getElementById("cost").value);
+
+if(isNaN(cost) || cost <= 0){
+alert("Please enter a valid AWS cost.");
+return;
+}
+
+let predicted = (cost * 1.15).toFixed(2);
+let savings = (cost * 0.25).toFixed(2);
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("result").innerHTML=
+`
+<h3>📊 Prediction Result</h3>
+<br>
+<p><b>Current Cost:</b> $${cost}</p>
+<p><b>Predicted Next Month Cost:</b> $${predicted}</p>
+<p><b>Potential Savings with AI Optimization:</b> $${savings}</p>
+<br>
+<p>💡 Recommendation: Enable Auto Scaling, remove idle resources, and use Reserved Instances.</p>
+`;
+
+}
+
+</script>
+
+</body>
+</html>
+

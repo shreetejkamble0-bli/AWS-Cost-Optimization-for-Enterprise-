@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enable Auto Scaling</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 10s ease infinite;
+color:white;
+min-height:100vh;
+padding:40px;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+max-width:950px;
+margin:auto;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+padding:35px;
+border-radius:25px;
+box-shadow:0 0 25px rgba(0,212,255,.3);
+}
+
+h1{
+text-align:center;
+color:#00d4ff;
+margin-bottom:15px;
+}
+
+.subtitle{
+text-align:center;
+font-size:18px;
+margin-bottom:30px;
+}
+
+.card{
+background:rgba(255,255,255,.06);
+padding:25px;
+border-radius:20px;
+margin-bottom:25px;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 0 20px #00d4ff;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.result{
+margin-top:20px;
+padding:20px;
+background:rgba(0,255,153,.15);
+border-radius:15px;
+display:none;
+}
+
+.graph{
+display:flex;
+justify-content:center;
+align-items:flex-end;
+gap:15px;
+height:250px;
+margin-top:25px;
+}
+
+.bar{
+width:60px;
+background:linear-gradient(to top,#00d4ff,#00ff99);
+border-radius:10px 10px 0 0;
+animation:grow 2s infinite alternate;
+}
+
+.b1{height:80px;}
+.b2{height:120px;}
+.b3{height:170px;}
+.b4{height:220px;}
+.b5{height:260px;}
+
+@keyframes grow{
+from{transform:scaleY(.7);}
+to{transform:scaleY(1);}
+}
+
+.back{
+display:inline-block;
+margin-top:25px;
+padding:12px 25px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+border-radius:30px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚡ Enable Auto Scaling</h1>
+
+<p class="subtitle">
+Automatically scale AWS resources based on workload demand and reduce cloud costs.
+</p>
+
+<div class="card">
+<h2>Auto Scaling Recommendation</h2>
+<p>
+AI detected fluctuating workload patterns. Enabling Auto Scaling can automatically
+increase resources during peak traffic and decrease them during low usage periods.
+</p>
+
+<br>
+
+<button onclick="enableScaling()">
+🚀 Enable Auto Scaling
+</button>
+
+<div class="result" id="result"></div>
+</div>
+
+<div class="card">
+<h2>Expected Resource Utilization</h2>
+
+<div class="graph">
+<div class="bar b1"></div>
+<div class="bar b2"></div>
+<div class="bar b3"></div>
+<div class="bar b4"></div>
+<div class="bar b5"></div>
+</div>
+
+</div>
+
+<div class="card">
+<h2>Benefits</h2>
+
+<p>✅ Reduces AWS costs</p>
+<p>✅ Improves application performance</p>
+<p>✅ Handles traffic spikes automatically</p>
+<p>✅ Prevents over-provisioning</p>
+<p>✅ Increases resource efficiency</p>
+
+</div>
+
+<a href="AWS.html" class="back">⬅ Back to Home</a>
+
+</div>
+
+<script>
+
+function enableScaling(){
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("result").innerHTML=
+`
+<h3>✅ Auto Scaling Enabled</h3>
+<br>
+<p>Current Instances: 5</p>
+<p>Minimum Instances: 2</p>
+<p>Maximum Instances: 10</p>
+<p>Estimated Monthly Savings: $320</p>
+<p>Resource Efficiency Improved by 25%</p>
+`;
+}
+
+</script>
+
+</body>
+</html>

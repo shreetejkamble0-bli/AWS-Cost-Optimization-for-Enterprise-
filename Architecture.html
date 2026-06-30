@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI AWS Cost Optimizer Architecture</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+color:white;
+overflow-x:auto;
+padding:30px;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.grid-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(0,212,255,.08) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,212,255,.08) 1px, transparent 1px);
+background-size:50px 50px;
+z-index:-1;
+animation:gridMove 15s linear infinite;
+}
+
+@keyframes gridMove{
+from{transform:translateY(0);}
+to{transform:translateY(50px);}
+}
+
+.home-btn{
+position:fixed;
+top:20px;
+left:20px;
+padding:12px 25px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+box-shadow:0 0 20px #00d4ff;
+z-index:999;
+}
+
+.title{
+text-align:center;
+font-size:50px;
+margin-bottom:40px;
+background:linear-gradient(90deg,#00d4ff,#00ff99);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.ai-center{
+display:flex;
+flex-direction:column;
+align-items:center;
+margin-bottom:70px;
+}
+
+.ai-core{
+position:relative;
+width:250px;
+height:250px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.brain{
+width:130px;
+height:130px;
+border-radius:50%;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:70px;
+z-index:10;
+box-shadow:0 0 50px #00d4ff;
+animation:pulse 2s infinite;
+}
+
+.orbit{
+position:absolute;
+border:2px solid rgba(0,212,255,.7);
+border-radius:50%;
+}
+
+.orbit1{
+width:180px;
+height:180px;
+animation:rotate 8s linear infinite;
+}
+
+.orbit2{
+width:250px;
+height:250px;
+animation:rotate 12s linear infinite reverse;
+}
+
+.orbit3{
+width:320px;
+height:320px;
+animation:rotate 16s linear infinite;
+}
+
+@keyframes rotate{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+#status{
+margin-top:30px;
+font-size:28px;
+color:#00ff99;
+font-weight:bold;
+}
+
+.architecture{
+display:flex;
+align-items:center;
+gap:25px;
+min-width:1700px;
+padding:20px;
+}
+
+.step{
+width:300px;
+padding:25px;
+border-radius:25px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+box-shadow:0 0 25px rgba(0,212,255,.2);
+transition:.5s;
+}
+
+.step:hover{
+transform:translateY(-15px) scale(1.05);
+box-shadow:
+0 0 20px #00d4ff,
+0 0 40px #00d4ff,
+0 0 80px #00d4ff;
+}
+
+.number{
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+font-weight:bold;
+background:#00d4ff;
+margin-bottom:15px;
+}
+
+.step h2{
+margin-bottom:20px;
+}
+
+.service{
+padding:15px;
+margin:10px 0;
+border-radius:15px;
+background:rgba(255,255,255,.08);
+}
+
+.flow-line{
+width:130px;
+height:5px;
+background:#444;
+position:relative;
+overflow:hidden;
+border-radius:10px;
+}
+
+.dot{
+width:18px;
+height:18px;
+background:#00ff99;
+border-radius:50%;
+position:absolute;
+top:-6px;
+left:-20px;
+animation:dataMove 2s linear infinite;
+box-shadow:0 0 20px #00ff99;
+}
+
+@keyframes dataMove{
+from{left:-20px;}
+to{left:130px;}
+}
+
+.metrics{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:50px;
+}
+
+.metric-card{
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,212,255,.3);
+}
+
+.metric-card h3{
+font-size:35px;
+color:#00ff99;
+}
+
+.feedback{
+margin-top:50px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+color:#00d4ff;
+}
+
+.particles span{
+position:fixed;
+bottom:-20px;
+width:6px;
+height:6px;
+background:#00d4ff;
+border-radius:50%;
+box-shadow:0 0 15px #00d4ff;
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+from{transform:translateY(0);}
+to{transform:translateY(-120vh);opacity:0;}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="grid-bg"></div>
+
+<a href="AWS.html" class="home-btn">🏠 Home</a>
+
+<h1 class="title">🤖 AI AWS Cost Optimizer Architecture</h1>
+
+<div class="ai-center">
+
+<div class="ai-core">
+<div class="orbit orbit1"></div>
+<div class="orbit orbit2"></div>
+<div class="orbit orbit3"></div>
+<div class="brain">🤖</div>
+</div>
+
+<h2 id="status"></h2>
+
+</div>
+
+<div class="architecture">
+
+<div class="step">
+<div class="number">1</div>
+<h2>AWS Data Collection</h2>
+<div class="service">AWS IoT Core</div>
+<div class="service">Amazon Kinesis</div>
+<div class="service">Amazon S3</div>
+<div class="service">CloudWatch</div>
+</div>
+
+<div class="flow-line"><div class="dot"></div></div>
+
+<div class="step">
+<div class="number">2</div>
+<h2>AI Engine</h2>
+<div class="service">Amazon SageMaker</div>
+<div class="service">Model Training</div>
+<div class="service">Inference Engine</div>
+</div>
+
+<div class="flow-line"><div class="dot"></div></div>
+
+<div class="step">
+<div class="number">3</div>
+<h2>Analytics</h2>
+<div class="service">Athena</div>
+<div class="service">Redshift</div>
+<div class="service">QuickSight</div>
+</div>
+
+<div class="flow-line"><div class="dot"></div></div>
+
+<div class="step">
+<div class="number">4</div>
+<h2>Recommendation System</h2>
+<div class="service">AI Suggestions</div>
+<div class="service">Cost Analysis</div>
+<div class="service">Optimization Engine</div>
+</div>
+
+<div class="flow-line"><div class="dot"></div></div>
+
+<div class="step">
+<div class="number">5</div>
+<h2>Dashboard</h2>
+<div class="service">KPIs</div>
+<div class="service">Reports</div>
+<div class="service">Monitoring</div>
+</div>
+
+</div>
+
+<div class="metrics">
+
+<div class="metric-card">
+<h3>98%</h3>
+<p>Prediction Accuracy</p>
+</div>
+
+<div class="metric-card">
+<h3>$12K</h3>
+<p>Estimated Savings</p>
+</div>
+
+<div class="metric-card">
+<h3>850+</h3>
+<p>Resources Monitored</p>
+</div>
+
+<div class="metric-card">
+<h3>24/7</h3>
+<p>AI Monitoring</p>
+</div>
+
+</div>
+
+<div class="feedback">
+🔄 Continuous Feedback Loop For Optimization
+</div>
+
+<div class="particles"></div>
+
+<script>
+
+const messages=[
+"Analyzing AWS Resources...",
+"Detecting Cost Waste...",
+"Optimizing Infrastructure...",
+"Generating AI Recommendations...",
+"Monitoring Cloud Usage..."
+];
+
+let index=0;
+
+setInterval(()=>{
+document.getElementById("status").innerHTML=messages[index];
+index=(index+1)%messages.length;
+},2000);
+
+const particles=document.querySelector('.particles');
+
+for(let i=0;i<80;i++){
+let span=document.createElement('span');
+span.style.left=Math.random()*100+'vw';
+span.style.animationDuration=(5+Math.random()*10)+'s';
+particles.appendChild(span);
+}
+
+</script>
+
+</body>
+</html>

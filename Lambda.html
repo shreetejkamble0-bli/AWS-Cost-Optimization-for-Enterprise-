@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWS Lambda Intelligence Center</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+color:white;
+overflow-x:hidden;
+min-height:100vh;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(10px);
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#00d4ff;
+}
+
+.back-btn{
+text-decoration:none;
+padding:12px 25px;
+border-radius:30px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:70px;
+font-weight:900;
+background:linear-gradient(90deg,#00d4ff,#00ff99,#00d4ff);
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:textGlow 6s linear infinite;
+}
+
+@keyframes textGlow{
+0%{background-position:0%;}
+100%{background-position:300%;}
+}
+
+.hero p{
+max-width:850px;
+margin:20px auto;
+font-size:20px;
+line-height:1.8;
+color:#dbeafe;
+}
+
+.hero-buttons{
+margin-top:30px;
+}
+
+.scan-btn{
+padding:15px 35px;
+margin:10px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.4s;
+}
+
+.scan-btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px #00d4ff;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:50px;
+flex-wrap:wrap;
+}
+
+.stat-card{
+width:220px;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+box-shadow:0 0 20px rgba(0,212,255,.2);
+transition:.4s;
+text-align:center;
+}
+
+.stat-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 35px #00d4ff;
+}
+
+.stat-card h2{
+font-size:42px;
+color:#00ff99;
+margin-bottom:10px;
+}
+
+.container{
+width:90%;
+max-width:1300px;
+margin:auto;
+padding-bottom:60px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+transition:.4s;
+box-shadow:0 0 20px rgba(0,212,255,.15);
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 35px #00d4ff;
+}
+
+.card h3{
+color:#00d4ff;
+margin-bottom:12px;
+}
+
+.table-box{
+margin-top:40px;
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+th{
+color:#00ff99;
+}
+
+.graph{
+height:300px;
+display:flex;
+justify-content:center;
+align-items:flex-end;
+gap:20px;
+margin-top:30px;
+}
+
+.bar{
+width:70px;
+background:linear-gradient(to top,#00d4ff,#00ff99);
+border-radius:15px 15px 0 0;
+animation:grow 2s infinite alternate;
+}
+
+.b1{height:120px;}
+.b2{height:220px;}
+.b3{height:170px;}
+.b4{height:280px;}
+.b5{height:200px;}
+
+@keyframes grow{
+from{transform:scaleY(.7);}
+to{transform:scaleY(1);}
+}
+
+.ai-box{
+margin-top:40px;
+padding:25px;
+border-radius:20px;
+background:rgba(0,212,255,.08);
+border:1px solid rgba(0,212,255,.3);
+}
+
+.ai-box h2{
+color:#00ff99;
+margin-bottom:15px;
+}
+
+footer{
+background:#06101f;
+padding:25px;
+text-align:center;
+margin-top:50px;
+}
+
+.ai-bot{
+position:fixed;
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+border-radius:50%;
+background:#00d4ff;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+cursor:pointer;
+box-shadow:0 0 30px #00d4ff;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 10px #00d4ff;}
+50%{box-shadow:0 0 40px #00d4ff;}
+100%{box-shadow:0 0 10px #00d4ff;}
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">AI AWS Optimizer</div>
+<a href="AWS.html" class="back-btn">Back</a>
+</header>
+
+<section class="hero">
+
+<h1>⚡ AWS Lambda Intelligence Center</h1>
+
+<p>
+Monitor serverless applications, analyze function performance,
+track invocations, reduce execution costs and receive
+AI-powered optimization recommendations.
+</p>
+
+<div class="hero-buttons">
+<button class="scan-btn" onclick="scanLambda()">
+🚀 Analyze Functions
+</button>
+
+<button class="scan-btn" onclick="showReport()">
+📊 View Report
+</button>
+</div>
+
+<div class="stats">
+
+<div class="stat-card">
+<h2>45</h2>
+<p>Functions</p>
+</div>
+
+<div class="stat-card">
+<h2>2.8M</h2>
+<p>Invocations</p>
+</div>
+
+<div class="stat-card">
+<h2>$180</h2>
+<p>Monthly Cost</p>
+</div>
+
+<div class="stat-card">
+<h2>$40</h2>
+<p>Potential Savings</p>
+</div>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+<h3>⚡ Function Monitoring</h3>
+<p>Monitor Lambda execution and performance metrics.</p>
+</div>
+
+<div class="card">
+<h3>📈 Invocation Analytics</h3>
+<p>Analyze requests, traffic spikes and trends.</p>
+</div>
+
+<div class="card">
+<h3>💰 Cost Optimization</h3>
+<p>Identify expensive functions and reduce spending.</p>
+</div>
+
+<div class="card">
+<h3>🤖 AI Recommendations</h3>
+<p>Get intelligent optimization suggestions.</p>
+</div>
+
+</div>
+
+<div class="table-box">
+
+<h2 style="color:#00d4ff;margin-bottom:20px;">
+Lambda Function Status
+</h2>
+
+<table>
+
+<tr>
+<th>Function</th>
+<th>Invocations</th>
+<th>Duration</th>
+<th>Monthly Cost</th>
+</tr>
+
+<tr>
+<td>UserAuth</td>
+<td>850,000</td>
+<td>120 ms</td>
+<td>$40</td>
+</tr>
+
+<tr>
+<td>ImageResize</td>
+<td>1,200,000</td>
+<td>280 ms</td>
+<td>$70</td>
+</tr>
+
+<tr>
+<td>EmailSender</td>
+<td>750,000</td>
+<td>90 ms</td>
+<td>$25</td>
+</tr>
+
+<tr>
+<td>DataProcessor</td>
+<td>500,000</td>
+<td>310 ms</td>
+<td>$45</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card" style="margin-top:40px;">
+<h3>📊 Lambda Analytics</h3>
+
+<div class="graph">
+<div class="bar b1"></div>
+<div class="bar b2"></div>
+<div class="bar b3"></div>
+<div class="bar b4"></div>
+<div class="bar b5"></div>
+</div>
+
+</div>
+
+<div class="ai-box">
+
+<h2>🤖 AI Optimization Engine</h2>
+
+<p>
+AI detected excessive memory allocation in ImageResize
+functions. Optimizing memory and execution settings
+can save approximately $40 per month.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+AI AWS Cost Optimizer © 2026
+</footer>
+
+
+
+</body>
+</html>

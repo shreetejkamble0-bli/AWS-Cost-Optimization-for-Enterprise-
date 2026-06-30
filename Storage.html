@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reduce S3 Storage Cost</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#081226,#0f1f3d,#12284d,#081226);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Back Button */
+
+.back-btn{
+position:fixed;
+top:20px;
+left:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-weight:bold;
+cursor:pointer;
+font-size:16px;
+box-shadow:0 0 20px rgba(0,212,255,.4);
+transition:.3s;
+z-index:1000;
+}
+
+.back-btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px #00d4ff;
+}
+
+/* Particles */
+
+.particles span{
+position:absolute;
+width:8px;
+height:8px;
+background:#00d4ff;
+border-radius:50%;
+box-shadow:0 0 15px #00d4ff;
+animation:floatParticle 15s linear infinite;
+}
+
+@keyframes floatParticle{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+
+/* Main Card */
+
+.card{
+width:90%;
+max-width:1000px;
+padding:40px;
+background:rgba(255,255,255,.07);
+backdrop-filter:blur(15px);
+border-radius:25px;
+box-shadow:0 0 35px rgba(0,212,255,.35);
+border:1px solid rgba(255,255,255,.1);
+position:relative;
+z-index:2;
+}
+
+/* AI Glow Orb */
+
+.ai-orb{
+position:absolute;
+width:280px;
+height:280px;
+background:#00d4ff;
+border-radius:50%;
+filter:blur(120px);
+opacity:.15;
+top:-60px;
+right:-60px;
+animation:orbMove 5s ease-in-out infinite alternate;
+}
+
+@keyframes orbMove{
+from{transform:translateY(0);}
+to{transform:translateY(40px);}
+}
+
+/* Icon */
+
+.icon{
+font-size:90px;
+text-align:center;
+margin-bottom:20px;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+h1{
+text-align:center;
+font-size:45px;
+color:#00d4ff;
+margin-bottom:15px;
+}
+
+.desc{
+text-align:center;
+font-size:18px;
+color:#cbd5e1;
+line-height:1.7;
+margin-bottom:35px;
+}
+
+/* Stats */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.box{
+padding:25px;
+border-radius:18px;
+background:rgba(255,255,255,.08);
+text-align:center;
+transition:.4s;
+}
+
+.box:hover{
+transform:translateY(-8px);
+box-shadow:0 0 25px #00d4ff;
+}
+
+.box h2{
+font-size:38px;
+color:#00ff99;
+margin-bottom:10px;
+}
+
+/* AI Recommendation */
+
+.ai-insight{
+padding:25px;
+border-radius:18px;
+background:rgba(0,212,255,.08);
+border:1px solid rgba(0,212,255,.25);
+}
+
+.ai-insight h3{
+color:#00ff99;
+margin-bottom:12px;
+}
+
+/* Button */
+
+.btn{
+display:block;
+margin:30px auto 0;
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 25px #00d4ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Working Back Button -->
+<button class="back-btn" onclick="history.back()">
+← Back
+</button>
+
+<div class="particles">
+<span style="left:10%;animation-duration:10s;"></span>
+<span style="left:25%;animation-duration:15s;"></span>
+<span style="left:40%;animation-duration:12s;"></span>
+<span style="left:55%;animation-duration:18s;"></span>
+<span style="left:70%;animation-duration:14s;"></span>
+<span style="left:85%;animation-duration:20s;"></span>
+</div>
+
+<div class="card">
+
+<div class="ai-orb"></div>
+
+<div class="icon">📦</div>
+
+<h1>Reduce S3 Storage Cost</h1>
+
+<p class="desc">
+Optimize Amazon S3 storage using AI-powered insights.
+Identify unused files, archive cold data, and reduce
+monthly cloud storage expenses.
+</p>
+
+<div class="stats">
+
+<div class="box">
+<h2>2.5 TB</h2>
+<p>Total Storage</p>
+</div>
+
+<div class="box">
+<h2 id="cost">$0</h2>
+<p>Monthly Cost</p>
+</div>
+
+<div class="box">
+<h2>850 GB</h2>
+<p>Archive Candidates</p>
+</div>
+
+<div class="box">
+<h2>35%</h2>
+<p>Potential Savings</p>
+</div>
+
+</div>
+
+<div class="ai-insight">
+<h3>🤖 AI Recommendation</h3>
+
+<p>
+Move old files to Glacier Storage, apply lifecycle policies,
+and delete unused objects older than 180 days.
+Estimated monthly savings: <strong>$120</strong>.
+</p>
+
+</div>
+
+<button class="btn" onclick="window.location.href='AWS.html'">
+🚀 Optimize Storage
+</button>
+
+</div>
+
+<script>
+
+/* Animated Cost Counter */
+
+let value = 0;
+let target = 340;
+
+let counter = setInterval(function(){
+
+value += 4;
+
+document.getElementById("cost").innerHTML = "$" + value;
+
+if(value >= target){
+clearInterval(counter);
+}
+
+},20);
+
+/* Optimization Button */
+
+function optimizeStorage(){
+
+alert(
+"🤖 AI Storage Optimization Started!\n\n" +
+"✔ Moving Cold Data To Glacier\n" +
+"✔ Applying Lifecycle Policies\n" +
+"✔ Removing Unused Files\n\n" +
+"💰 Estimated Savings: $120/Month"
+);
+
+}
+
+</script>
+
+</body>
+</html>
+

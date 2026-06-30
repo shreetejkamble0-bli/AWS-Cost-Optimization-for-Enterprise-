@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact AI AWS Cost Optimizer</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#06121f,#0b1f33,#0f2a44,#06121f);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+color:white;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Container */
+.card{
+width:90%;
+max-width:650px;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.12);
+box-shadow:0 0 35px rgba(0,212,255,0.15);
+text-align:center;
+}
+
+/* Heading */
+h1{
+font-size:40px;
+margin-bottom:10px;
+color:#00d4ff;
+}
+
+p{
+margin-bottom:25px;
+color:#cfe8ff;
+}
+
+/* Inputs */
+input, textarea{
+width:100%;
+padding:14px;
+margin:10px 0;
+border-radius:10px;
+border:none;
+outline:none;
+background:rgba(255,255,255,0.08);
+color:white;
+font-size:16px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+textarea{
+resize:none;
+height:120px;
+}
+
+/* Button */
+button{
+margin-top:15px;
+padding:14px 35px;
+border:none;
+border-radius:50px;
+background:linear-gradient(45deg,#00d4ff,#00ff99);
+color:black;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 20px rgba(0,212,255,0.4);
+}
+
+button:hover{
+transform:scale(1.05);
+box-shadow:0 0 40px rgba(0,212,255,0.7);
+}
+
+/* Popup */
+.popup{
+position:fixed;
+top:20px;
+right:20px;
+background:rgba(0,0,0,0.85);
+padding:15px 20px;
+border-radius:12px;
+border:1px solid #00ff99;
+display:none;
+animation:fade 0.5s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(-10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+.popup h3{
+color:#00ff99;
+margin-bottom:5px;
+}
+
+.popup p{
+font-size:14px;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Contact Support</h1>
+<p>Need help with AWS cost optimization? Send us a message.</p>
+
+<input type="text" id="name" placeholder="Your Name">
+<input type="email" id="email" placeholder="Your Email">
+<textarea id="message" placeholder="Your Message"></textarea>
+
+<button onclick="sendMessage()">Send Message</button>
+
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+<h3>Message Sent ✔</h3>
+<p>Redirecting to next page...</p>
+</div>
+
+<script>
+function sendMessage(){
+
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let msg = document.getElementById("message").value;
+
+if(name === "" || email === "" || msg === ""){
+alert("Please fill all fields!");
+return;
+}
+
+// show popup
+let popup = document.getElementById("popup");
+popup.style.display = "block";
+
+// clear form
+document.getElementById("name").value = "";
+document.getElementById("email").value = "";
+document.getElementById("message").value = "";
+
+// redirect after 3 seconds
+setTimeout(()=>{
+popup.style.display = "none";
+window.location.href = "AWS.html";
+},3000);
+
+}
+</script>
+
+</body>
+</html>
